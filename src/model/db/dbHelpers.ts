@@ -2,6 +2,12 @@ import Article from '../data/Article'
 import pool from './config';
 
 export async function postArticles(articles: Article[]) {
+    let totalArticleCount = articles.length
+
+    articles = await trimArticles(articles);
+
+    console.log(`${totalArticleCount - articles.length} articles removed as delta`);
+
     let articlesAdded = [];
     let numErrors = 0;
 
@@ -27,6 +33,17 @@ export async function postArticles(articles: Article[]) {
     console.log(`Articles added: ${articlesAdded.length} / ${articles.length}\nErrors encountered: ${numErrors}`)
 
     return articlesAdded;
+}
+
+export async function getArticleURLs() {
+    let result = await pool.query('SELECT url from articles');
+    return result;
+}
+
+async function trimArticles(articles: Article[]) {
+    let existing = (await getArticleURLs()).rows;
+
+    return articles.filter(article => existing.some((url: string) => article.url === url));
 }
 
 async function insertArticle(article: Article) {
