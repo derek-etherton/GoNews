@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/derek-etherton/GoNews#readme",
   "dependencies": {
+    "@types/cheerio": "^0.22.22",
+    "@types/request-promise": "^4.1.46",
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "puppeteer": "^5.5.0",
     "request": "^2.88.2",

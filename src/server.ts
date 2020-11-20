@@ -1,13 +1,12 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 
 import apiRouter from './routes/api';
 
-
 const app = express();
-const router = express.Router();
-
 const PORT = 8080;
 
+app.use(bodyParser.json());
 app.use('/', apiRouter);
 
 app.listen(PORT, () => {
