@@ -1,7 +1,7 @@
 import { Request } from "express";
 import IRequestController from './IRequestController';
 import WebScraper from '../model/scrapers/WebScraper';
-import PageParser from '../model/parsers/PageParser';
+import SinaParser from '../model/parsers/SinaParser';
 
 class HomeController implements IRequestController {
     url: string;
@@ -12,10 +12,10 @@ class HomeController implements IRequestController {
 
     public async getResponse() {
         let scraper = new WebScraper();
-        let parser = new PageParser();
+        let sinaParser = new SinaParser();
 
         let pageHtml = await scraper.scrape(this.url);
-        let articles = await parser.parse(pageHtml);
+        let articles = sinaParser.parse(pageHtml);
 
         return articles;
     }
