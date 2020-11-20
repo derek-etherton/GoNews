@@ -36,8 +36,6 @@ class SinaParser implements IPageParser {
 
         let rawDate = $(dateE).text();
 
-        console.log(rawDate.slice(1, -1));
-
         let date = new Date(rawDate.slice(1, -1));
 
         return new Article(url, title, this.source, date);
