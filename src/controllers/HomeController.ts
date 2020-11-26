@@ -30,13 +30,12 @@ class HomeController implements IRequestController {
         }
 
         let pageHtml = await scraper.scrape(this.url);
-        let articles = pageParser.parse(pageHtml);
+        let articles = await pageParser.parse(pageHtml);
 
         let addedArticles = await postArticles(articles);
 
         return addedArticles;
     }
-
 }
 
 export default HomeController

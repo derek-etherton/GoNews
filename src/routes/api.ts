@@ -9,7 +9,6 @@ router.get('/', async (req: Request, res: Response) => {
     let response = await controller.getResponse();
 
     res.send(response);
-
 });
 
 export = router;

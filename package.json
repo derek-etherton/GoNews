@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/derek-etherton/GoNews#readme",
   "dependencies": {
+    "@google-cloud/translate": "^6.0.4",
     "@types/cheerio": "^0.22.22",
     "@types/pg": "^7.14.7",
     "@types/request-promise": "^4.1.46",

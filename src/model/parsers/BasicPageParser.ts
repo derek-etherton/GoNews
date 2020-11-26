@@ -13,7 +13,7 @@ abstract class BasicPageParser implements IPageParser {
         this.source = "Basic";
     }
 
-    public parse(html: string): IArticle[] {
+    public async parse(html: string): Promise<IArticle[]> {
         const $ = cheerio.load(html);
 
         let articles = [];
@@ -26,7 +26,7 @@ abstract class BasicPageParser implements IPageParser {
             let linkE = links[i];
             let dateE = dates[i];
 
-            let article = this.constructArticle($, linkE, dateE);
+            let article = await this.constructArticle($, linkE, dateE);
 
             articles.push(article)
         }
@@ -34,7 +34,7 @@ abstract class BasicPageParser implements IPageParser {
         return articles;
     }
 
-    public constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element): IArticle {
+    public async constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element): Promise<IArticle> {
         throw new Error("Class must implement constructArticle");
     }
 }

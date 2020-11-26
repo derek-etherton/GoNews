@@ -1,5 +1,5 @@
 import Article from '../data/Article'
-import { fudgeDateYear } from './ParserHelpers';
+import { fudgeDateYear, translate } from './ParserHelpers';
 import BasicPageParser from './BasicPageParser';
 import IArticle from '../data/IArticle';
 
@@ -13,9 +13,9 @@ class SinaParser extends BasicPageParser {
         this.datesSelector = '.link03 > .link08';
     }
 
-    public constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element): IArticle {
+    public async constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element): Promise<IArticle> {
         let url = linkE.attribs.href;
-        let title = $(linkE).text();
+        let title = await translate('zh', $(linkE).text());
 
         let rawDate = $(dateE).text();
 
