@@ -1,38 +1,21 @@
 import Article from '../data/Article'
-import cheerio from 'cheerio'
-import IPageParser from './IPageParser';
 import { fudgeDateYear } from './ParserHelpers';
+import BasicPageParser from './BasicPageParser';
+import IArticle from '../data/IArticle';
 
-class AsahiParser implements IPageParser {
+class AsahiParser extends BasicPageParser {
     public source: string;
     public root: string;
 
     constructor() {
+        super();
         this.source = 'Asahi';
         this.root = 'http://www.asahi.com';
+        this.linksSelector = '.SectionFst > .List > li > a';
+        this.datesSelector = '.SectionFst > .List > li > a > .Time';
     }
 
-    public parse(html: string) {
-        const $ = cheerio.load(html);
-        let articles = [];
-
-        let links = $('.SectionFst > .List > li > a');
-        let dates = $('.SectionFst > .List > li > a > .Time');
-
-        let i;
-        for (i = 0; i < links.length; i++) {
-            let linkE = links[i];
-            let dateE = dates[i];
-
-            let article = this.constructArticle($, linkE, dateE);
-
-            articles.push(article)
-        }
-
-        return articles;
-    }
-
-    private constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element) {
+    public constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element): IArticle {
         let url = this.root + linkE.attribs.href;
         let title = $(linkE).text();
 

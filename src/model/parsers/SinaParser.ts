@@ -1,37 +1,19 @@
 import Article from '../data/Article'
-import cheerio from 'cheerio'
-import IPageParser from './IPageParser';
 import { fudgeDateYear } from './ParserHelpers';
+import BasicPageParser from './BasicPageParser';
+import IArticle from '../data/IArticle';
 
-class SinaParser implements IPageParser {
+class SinaParser extends BasicPageParser {
     public source: string;
 
     constructor() {
+        super();
         this.source = 'Sina';
+        this.linksSelector = '.link03 > a';
+        this.datesSelector = '.link03 > .link08';
     }
 
-    public parse(html: string) {
-        const $ = cheerio.load(html);
-
-        let articles = [];
-
-        let links = $('.link03 > a');
-        let dates = $('.link03 > .link08');
-
-        let i;
-        for (i = 0; i < links.length; i++) {
-            let linkE = links[i];
-            let dateE = dates[i];
-
-            let article = this.constructArticle($, linkE, dateE);
-
-            articles.push(article)
-        }
-
-        return articles;
-    }
-
-    private constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element) {
+    public constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element): IArticle {
         let url = linkE.attribs.href;
         let title = $(linkE).text();
 
