@@ -3,20 +3,21 @@ import cheerio from 'cheerio'
 import IPageParser from './IPageParser';
 import { fudgeDateYear } from './ParserHelpers';
 
-class SinaParser implements IPageParser {
+class AsahiParser implements IPageParser {
     public source: string;
+    public root: string;
 
     constructor() {
-        this.source = 'Sina';
+        this.source = 'Asahi';
+        this.root = 'http://www.asahi.com';
     }
 
     public parse(html: string) {
         const $ = cheerio.load(html);
-
         let articles = [];
 
-        let links = $('.link03 > a');
-        let dates = $('.link03 > .link08');
+        let links = $('.SectionFst > .List > li > a');
+        let dates = $('.SectionFst > .List > li > a > .Time');
 
         let i;
         for (i = 0; i < links.length; i++) {
@@ -32,7 +33,7 @@ class SinaParser implements IPageParser {
     }
 
     private constructArticle($: cheerio.Root, linkE: cheerio.Element, dateE: cheerio.Element) {
-        let url = linkE.attribs.href;
+        let url = this.root + linkE.attribs.href;
         let title = $(linkE).text();
 
         let rawDate = $(dateE).text();
@@ -44,4 +45,4 @@ class SinaParser implements IPageParser {
     }
 }
 
-export = SinaParser;
+export = AsahiParser;
