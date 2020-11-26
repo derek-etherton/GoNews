@@ -38,6 +38,18 @@ class SinaParser implements IPageParser {
 
         let date = new Date(rawDate.slice(1, -1));
 
+        // Sina dates don't contain the year unfortunately, so we have this little hack for now...
+        // TODO: maybe change Sina to crawl article pages themselves, where year is present
+        let currentDate = new Date();
+        let currentYear = currentDate.getFullYear();
+
+        date.setFullYear(currentYear);
+
+        // to account for year roll-over...
+        if (date.getTime() > currentDate.getTime()) {
+            date.setFullYear(currentYear - 1);
+        }
+
         return new Article(url, title, this.source, date);
     }
 }

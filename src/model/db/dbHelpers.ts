@@ -1,3 +1,4 @@
+import { QueryResult } from 'pg';
 import Article from '../data/Article'
 import pool from './config';
 
@@ -22,7 +23,7 @@ export async function postArticles(articles: Article[]) {
             result = await insertArticle(article);
             articlesAdded.push(article);
         } catch (error) {
-            // ignore psql unique constraint(s) error
+            // ignore psql unique constraint error
             if (error.code !== '23505') {
                 console.error(error);
                 numErrors++;
@@ -43,7 +44,15 @@ export async function getArticleURLs() {
 async function trimArticles(articles: Article[]) {
     let existing = (await getArticleURLs()).rows;
 
-    return articles.filter(article => existing.some((url: string) => article.url === url));
+    return articles.filter(article => {
+        let i;
+        for (i = 0; i < existing.length; i++) {
+            if (existing[i].url === article.url) {
+                return false;
+            }
+        }
+        return true;
+    });
 }
 
 async function insertArticle(article: Article) {
