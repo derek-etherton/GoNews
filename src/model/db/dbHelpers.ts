@@ -41,6 +41,11 @@ export async function getArticleURLs() {
     return result;
 }
 
+export async function getArticles(offset: number) {
+    let result = await pool.query('SELECT * from articles order by date desc offset $1 limit 20', [offset]);
+    return result;
+}
+
 async function trimArticles(articles: Article[]) {
     let existing = (await getArticleURLs()).rows;
 
