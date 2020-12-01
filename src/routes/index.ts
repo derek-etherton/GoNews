@@ -1,7 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const indexRouter = express.Router();
 
 /** Serve static React content */
-router.use(express.static('public'));
+indexRouter.use(express.static('public/dist'));
 
-export = router;
+export = indexRouter;
