@@ -6,6 +6,7 @@ import { postArticles } from '../model/db/dbHelpers';
 import AsahiParser from "../model/parsers/AsahiParser";
 import ChosunParser from "../model/parsers/ChosunParser";
 import NightmareWebScraper from "../model/scrapers/NightmareWebScraper";
+import TokyoParser from "../model/parsers/TokyoParser";
 
 class ScrapeController implements IRequestController {
     url: string;
@@ -32,6 +33,10 @@ class ScrapeController implements IRequestController {
             case "CHOSUN":
                 pageParser = new ChosunParser();
                 scraper = new NightmareWebScraper();
+                break;
+            case "TOKYO":
+                pageParser = new TokyoParser();
+                scraper = new WebScraper();
                 break;
             default:
                 throw new Error("Invalid source specified");

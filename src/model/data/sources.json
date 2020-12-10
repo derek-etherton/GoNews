@@ -10,5 +10,9 @@
     {
         "source": "chosun",
         "url": "http://www.chosun.com/people/lee-hongreal/"
+    },
+    {
+        "source": "tokyo",
+        "url": "https://www.tokyo-np.co.jp/search/?group_key=news&kw=%E5%9B%B2%E7%A2%81"
     }
 ]

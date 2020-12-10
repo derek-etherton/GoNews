@@ -20,13 +20,16 @@ function ArticleCard(props) {
                 &:hover {
                     box-shadow: 0 4px 6px 0 rgba(0,0,0,0.3);
                 }
-                width: 48%;
                 margin: 8px;
                 padding: 16px 8px;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
+                width: 100%;
+                @media (min-width: 1620px) {
+                    width: 48%;
+                }
             `}>
             <div css={css`
                         display: flex;
