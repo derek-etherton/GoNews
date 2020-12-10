@@ -7,6 +7,7 @@ import AsahiParser from "../model/parsers/AsahiParser";
 import ChosunParser from "../model/parsers/ChosunParser";
 import NightmareWebScraper from "../model/scrapers/NightmareWebScraper";
 import TokyoParser from "../model/parsers/TokyoParser";
+import DongaParser from "../model/parsers/DongaParser";
 
 class ScrapeController implements IRequestController {
     url: string;
@@ -38,13 +39,17 @@ class ScrapeController implements IRequestController {
                 pageParser = new TokyoParser();
                 scraper = new WebScraper();
                 break;
+            case "DONGA":
+                pageParser = new DongaParser();
+                scraper = new WebScraper();
+                break;
             default:
                 throw new Error("Invalid source specified");
         }
 
         let pageHtml = await scraper.scrape(this.url);
 
-        // return pageHtml;
+        return pageHtml;
         let articles = await pageParser.parse(pageHtml);
 
         let addedArticles = await postArticles(articles);

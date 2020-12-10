@@ -14,5 +14,9 @@
     {
         "source": "tokyo",
         "url": "https://www.tokyo-np.co.jp/search/?group_key=news&kw=%E5%9B%B2%E7%A2%81"
+    },
+    {
+        "source": "donga",
+        "url": "https://www.donga.com/news/Series/70070000000004"
     }
 ]
