@@ -1,5 +1,6 @@
 import React from 'react';
-import ArticleCard from '../ArticleCard/ArticleCard';
+import ArticleCard from './ArticleCard';
+import { css } from '@emotion/react'
 
 class ArticleList extends React.Component {
 
@@ -30,14 +31,17 @@ class ArticleList extends React.Component {
 
     render() {
         return (
-            <div className="article-list">
+            <div>
                 { this.state.isLoading &&
                     <div>
                         Loading...
                     </div>
                 }
                 { this.state.articles &&
-                    <div>
+                    <div css={css`padding: 8px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;`}>
                         {this.state.articles.map((article, index) => {
                             return <ArticleCard data={article} key={index}></ArticleCard>
                         })}

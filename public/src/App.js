@@ -1,9 +1,9 @@
 import React from 'react';
-import ArticleList from './components/ArticleList/ArticleList';
+import ArticlePage from './components/ArticlePage';
 
 function App() {
     return (
-        <ArticleList></ArticleList>
+        <ArticlePage></ArticlePage>
     );
 }
 export default App;
