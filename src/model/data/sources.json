@@ -6,5 +6,9 @@
     {
         "source": "sina",
         "url": "http://sports.sina.com.cn/chess/weiqi/"
+    },
+    {
+        "source": "chosun",
+        "url": "http://www.chosun.com/people/lee-hongreal/"
     }
 ]

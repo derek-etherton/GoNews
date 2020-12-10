@@ -1,6 +1,7 @@
 import React from 'react';
 import { css, jsx } from '@emotion/react'
 import flags from '../../resources/flags';
+import logos from '../../resources/logos';
 
 function ArticleCard(props) {
     // public url: string, public title: string,
@@ -8,6 +9,7 @@ function ArticleCard(props) {
 
     const data = props.data;
     const flag = flags[data.nation];
+    const logo = logos[data.source];
 
     return (
         <div
@@ -17,9 +19,9 @@ function ArticleCard(props) {
                 flex-direction: row;
                 align-items: center;
             `}>
-            <img src={flag} alt={data.nation} title={data.nation}
+            <img src={logo} alt={data.source} title={data.source}
                 css={css`
-                    width: 16px;
+                    width: 48px;
                     height: auto;`} />
             <a href={data.url}
                 target='_blank'
@@ -32,12 +34,10 @@ function ArticleCard(props) {
                 `}>
                 {data.title}
             </a>
-            <p
+            <img src={flag} alt={data.nation} title={data.nation}
                 css={css`
-                    font-size: 70%;
-                `}>
-                {data.source}
-            </p>
+                    width: 22px;
+                    height: 16px;`} />
         </div>
     );
 }

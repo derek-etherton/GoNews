@@ -4,6 +4,7 @@ import WebScraper from '../model/scrapers/WebScraper';
 import SinaParser from '../model/parsers/SinaParser';
 import { postArticles } from '../model/db/dbHelpers';
 import AsahiParser from "../model/parsers/AsahiParser";
+import ChosunParser from "../model/parsers/ChosunParser";
 
 class ScrapeController implements IRequestController {
     url: string;
@@ -25,11 +26,16 @@ class ScrapeController implements IRequestController {
             case "SINA":
                 pageParser = new SinaParser();
                 break;
+            case "CHOSUN":
+                pageParser = new ChosunParser();
+                break;
             default:
                 throw new Error("Invalid source specified");
         }
 
         let pageHtml = await scraper.scrape(this.url);
+
+        return pageHtml;
         let articles = await pageParser.parse(pageHtml);
 
         let addedArticles = await postArticles(articles);
