@@ -5,9 +5,11 @@ import IArticle from '../data/IArticle';
 
 class SinaParser extends BasicPageParser {
     public source: string;
+    public nation: string;
 
     constructor() {
         super();
+        this.nation = 'China';
         this.source = 'Sina';
         this.linksSelector = '.link03 > a';
         this.datesSelector = '.link03 > .link08';
@@ -22,7 +24,7 @@ class SinaParser extends BasicPageParser {
         let date = new Date(rawDate.slice(1, -1));
         fudgeDateYear(date);
 
-        return new Article(url, title, this.source, date);
+        return new Article(url, title, this.source, this.nation, date);
     }
 }
 

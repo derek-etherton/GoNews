@@ -6,17 +6,21 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@emotion/babel-preset-css-prop"
     ]
   },
   "scripts": {
     "start": "webpack-dev-server --open",
-    "create": "webpack"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^11.0.0",
+    "@emotion/react": "^11.1.2",
+    "emotion": "^11.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -32,6 +36,7 @@
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.9.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"

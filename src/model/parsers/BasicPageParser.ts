@@ -5,12 +5,14 @@ import { fudgeDateYear } from './ParserHelpers';
 import IArticle from '../data/IArticle';
 
 abstract class BasicPageParser implements IPageParser {
+    public nation: string;
     public source: string;
     public linksSelector!: string;
     public datesSelector!: string;
 
     constructor() {
-        this.source = "Basic";
+        this.nation = 'Unknown'
+        this.source = 'Basic';
     }
 
     public async parse(html: string): Promise<IArticle[]> {

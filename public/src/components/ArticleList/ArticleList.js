@@ -1,6 +1,5 @@
 import React from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
-import './ArticleList.css';
 
 class ArticleList extends React.Component {
 

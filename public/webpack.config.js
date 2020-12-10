@@ -14,8 +14,10 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.(jpg|png|svg)$/,
+                use: {
+                    loader: 'url-loader'
+                }
             }
         ]
     },

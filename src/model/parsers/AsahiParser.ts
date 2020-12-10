@@ -6,9 +6,11 @@ import IArticle from '../data/IArticle';
 class AsahiParser extends BasicPageParser {
     public source: string;
     public root: string;
+    public nation: string;
 
     constructor() {
         super();
+        this.nation = 'Japan';
         this.source = 'Asahi';
         this.root = 'http://www.asahi.com';
         this.linksSelector = '.SectionFst > .List > li > a';
@@ -24,7 +26,7 @@ class AsahiParser extends BasicPageParser {
         let date = new Date(rawDate.slice(1, -1));
         fudgeDateYear(date);
 
-        return new Article(url, title, this.source, date);
+        return new Article(url, title, this.source, this.nation, date);
     }
 }
 

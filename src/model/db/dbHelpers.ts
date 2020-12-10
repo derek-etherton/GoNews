@@ -61,8 +61,8 @@ async function trimArticles(articles: Article[]) {
 }
 
 async function insertArticle(article: Article) {
-    const query = 'INSERT INTO articles (url, title, source, date, author) VALUES($1, $2, $3, $4, $5)';
-    const values = [article.url, article.title, article.source, article.date, article.author];
+    const query = 'INSERT INTO articles (url, title, source, date, author, nation) VALUES($1, $2, $3, $4, $5, $6)';
+    const values = [article.url, article.title, article.source, article.date, article.author, article.nation];
 
     let result = await pool.query(query, values);
 
